@@ -1,7 +1,7 @@
 ﻿//-----------------------------------------------------------------------------------
 // File Name       : KingsBeckAndCall/RiaGameManager.cs
 // Author          : flanny
-// Creation Date   : 17/05/2018
+// Creation Date   : 18/05/2018
 
 // Copyright © 2018 Senshu Univ. EDPS Project K.B.C>
 //-----------------------------------------------------------------------------------
@@ -20,8 +20,10 @@ namespace Ria
 
         public static T GetInstance() { return _inst; }
 
+        public abstract void OnConstructor();
         protected RiaSingleton()
         {
+            OnConstructor();
             Debug.Assert(null == _inst);
         }
     }
