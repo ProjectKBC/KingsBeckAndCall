@@ -12,7 +12,7 @@ namespace Ria
     {
         #region Member
         private PlayerID playerID;
-        private PlayerScriptableObject scriptObj_;
+        private PlayerScriptableObject scriptable;
         private SpriteRenderer sr_ = null;
         #endregion
 
@@ -21,16 +21,16 @@ namespace Ria
         /// コンストラクタ
         /// </summary>
         /// <param name="_playerID">player1 or player2</param>
-        /// <param name="_sto">PlayerScriptableObject</param>
+        /// <param name="_scriptable">PlayerScriptableObject</param>
         /// <param name="_name">GameObjectの名前</param>
         /// <param name="_localPosition">localPosition</param>
-        public PlayerActor(PlayerID _playerID, PlayerScriptableObject _sto, string _name, Vector3 _localPosition)
+        public PlayerActor(PlayerID _playerID, PlayerScriptableObject _scriptable, string _name, Vector3 _localPosition)
                : base(_name, _localPosition)
         {
-            playerID = _playerID;
-            scriptObj_ = _sto;
-            sr_ = go_.AddComponent<SpriteRenderer>();
-            sr_.sprite = scriptObj_.sprite;
+            this.playerID = _playerID;
+            this.scriptable = _scriptable;
+            this.sr_ = go_.AddComponent<SpriteRenderer>();
+            this.sr_.sprite = scriptable.sprite;
         }
 
         /// <summary>
@@ -54,19 +54,19 @@ namespace Ria
                 case PlayerID.Player1:
                     if (Input.GetKey(KeyCode.UpArrow))
                     {
-                        trans_.position += Vector3.up * scriptObj_.speed * Time.deltaTime * 100;
+                        trans_.position += Vector3.up * scriptable.speed * Time.deltaTime * 100;
                     }
                     if (Input.GetKey(KeyCode.DownArrow))
                     {
-                        trans_.position += Vector3.down * scriptObj_.speed * Time.deltaTime * 100;
+                        trans_.position += Vector3.down * scriptable.speed * Time.deltaTime * 100;
                     }
                     if (Input.GetKey(KeyCode.RightArrow))
                     {
-                        trans_.position += Vector3.right * scriptObj_.speed * Time.deltaTime * 100;
+                        trans_.position += Vector3.right * scriptable.speed * Time.deltaTime * 100;
                     }
                     if (Input.GetKey(KeyCode.LeftArrow))
                     {
-                        trans_.position += Vector3.left * scriptObj_.speed * Time.deltaTime * 100;
+                        trans_.position += Vector3.left * scriptable.speed * Time.deltaTime * 100;
                     }
                     break;
 
@@ -74,19 +74,19 @@ namespace Ria
                     /*
                     if (Input.GetKey(KeyCode.UpArrow))
                     {
-                        trans_.position += Vector3.up    * scriptObj_.speed * Time.deltaTime * 100;
+                        trans_.position += Vector3.up    * scriptable.speed * Time.deltaTime * 100;
                     }
                     if (Input.GetKey(KeyCode.DownArrow))
                     {
-                        trans_.position += Vector3.down  * scriptObj_.speed * Time.deltaTime * 100;
+                        trans_.position += Vector3.down  * scriptable.speed * Time.deltaTime * 100;
                     }
                     if (Input.GetKey(KeyCode.RightArrow))
                     {
-                        trans_.position += Vector3.right * scriptObj_.speed * Time.deltaTime * 100;
+                        trans_.position += Vector3.right * scriptable.speed * Time.deltaTime * 100;
                     }
                     if (Input.GetKey(KeyCode.LeftArrow))
                     {
-                        trans_.position += Vector3.left  * scriptObj_.speed * Time.deltaTime * 100;
+                        trans_.position += Vector3.left  * scriptable.speed * Time.deltaTime * 100;
                     }
                     */
                     break;

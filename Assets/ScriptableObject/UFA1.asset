@@ -8,10 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683ae664a304ef64a94425b5119d2abd, type: 3}
-  m_Name: EnemyScriptableObject
+  m_Script: {fileID: 11500000, guid: 81fd4ca10552b8e4793a5e094ed226b9, type: 3}
+  m_Name: UFA1
   m_EditorClassIdentifier: 
-  EnemyName: 
-  sprite: {fileID: 0}
+  playerName: UFA1
+  sprite: {fileID: 21300000, guid: 8ef71e28aeff4c044a18fd8be4bf97ca, type: 3}
   attack: 1
-  speed: 1
+  speed: 25

@@ -24,36 +24,28 @@ namespace Ria
         /// 生成(GameObjectを与えるver)
         /// </summary>
         /// <param name="_gameObject">GameObject</param>
-        public void Create(GameObject _gameObject, UNIQUEID _uniqueId)
+        public void Create(GameObject _gameObject, ScriptableObject _scriptable, UNIQUEID _uniqueId)
         {
             this.go_ = _gameObject;
             this.trans_ = go_.transform;
             this.uniqueId = _uniqueId;
             this.go_.SetActive(false);
-            OnCreate();
+            OnCreate(_gameObject, _scriptable, _uniqueId);
         }
 
         /// <summary>
         /// 生成(GameObjectを生成して返すver)
         /// </summary>
         /// <param name="_name">GameObjectの名前</param>
-        public GameObject Create(string _name, UNIQUEID _uniqueId)
+        public GameObject Create(string _name, ScriptableObject _scriptable, UNIQUEID _uniqueId)
         {
             this.go_ = new GameObject(_name);
             this.trans_ = go_.transform;
             this.uniqueId = _uniqueId;
             this.go_.SetActive(false);
-            OnCreate();
+            OnCreate(_name, _scriptable, _uniqueId);
 
             return go_;
-        }
-
-        /// <summary>
-        /// 更新
-        /// </summary>
-        public void Update()
-        {
-            OnUpdate();
         }
 
         /// <summary>
@@ -107,7 +99,8 @@ namespace Ria
         }
 
         // 派生クラスでの固有定義
-        protected abstract void OnCreate();
+        protected abstract void OnCreate(GameObject _go, ScriptableObject _scriptable, UNIQUEID _uniqueId);
+        protected abstract void OnCreate(string _name, ScriptableObject _scriptable, UNIQUEID _uniqueId);
         public abstract void OnUpdate();
         protected abstract void OnRelease();
         protected abstract void OnAwake();

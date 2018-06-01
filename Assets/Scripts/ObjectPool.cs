@@ -10,6 +10,7 @@ namespace Ria
         /// </summary>
         private struct ObjectParam
         {
+            public CachedActor actor;
             /// <summary>
             /// 元のprefab
             /// </summary>
@@ -202,7 +203,8 @@ namespace Ria
             int index = this.objParams[type].genCount;
             ScriptableObject scriptable = this.objParams[type].scriptable;
             Transform root = this.objParams[type].root;
-            GameObject go = Object.Instantiate(null, root) as GameObject;
+            GameObject go = new GameObject();
+            go.transform.parent = root;
             
 #if UNITY_EDITOR
             go.name = string.Format(this.objParams[type].scriptable.name + "{0:D2}",
@@ -211,10 +213,7 @@ namespace Ria
             T obj = new T();
             
             // ユニークID を割り振り
-            obj.Create(typeof(T).Name, UNIQUEID.Create(
-                UNIQUEID.CATEGORYBIT(this.category) |
-                UNIQUEID.TYPEBIT(type) |
-                UNIQUEID.INDEXBIT(index)));
+            obj.Create(go, scriptable, UNIQUEID.Create(UNIQUEID.CATEGORYBIT(this.category) | UNIQUEID.TYPEBIT(type) | UNIQUEID.INDEXBIT(index)));
             
             this.objList[type][index] = obj;
             ++this.objParams[type].genCount;
