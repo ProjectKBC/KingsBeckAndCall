@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -11,6 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d1757e1f98dee45b9ec55e305b1866, type: 3}
   m_Name: "UFA\u2160"
   m_EditorClassIdentifier: 
+  colliderMode: 0
+  colliderRadius: 10
+  colliderIsDebugMode: 1
   playerName: "UFA\u2160"
   sprite: {fileID: 21300000, guid: e9115d56c3d16764588f83e74a5bcd21, type: 3}
   attack: 1

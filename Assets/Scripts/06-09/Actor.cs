@@ -2,6 +2,7 @@
 
 namespace old_0609
 {
+    using Ria;
     public abstract class Actor
     {
         #region Static Constant Member
