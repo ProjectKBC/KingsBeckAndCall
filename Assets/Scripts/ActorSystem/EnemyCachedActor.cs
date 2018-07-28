@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 
-namespace old_0609
+namespace Ria
 {
     using UnityManiax;
-    using Ria;
 
     public class EnemyCachedActor : CachedActor
     {
-        #region Member
         private EnemyScriptableObject mScriptable;
         private SpriteRenderer sr_ = null;
         private RiaCollider mRiaCollider;
-        #endregion
-
+        
         protected override void OnCreate(GameObject _go, ScriptableObject _scriptable, UNIQUEID _uniqueId)
         {
             this.mScriptable  = _scriptable as EnemyScriptableObject; 

@@ -8,15 +8,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec3f9fd6245431498919c04ffff60ba, type: 3}
-  m_Name: veronica_cc
+  m_Script: {fileID: 11500000, guid: 932afa10317ac6a4b8452b9d58b030e8, type: 3}
+  m_Name: varonica_cc
   m_EditorClassIdentifier: 
   colliderMode: 0
-  colliderRadius: 0
+  colliderRadius: 2
   colliderIsDebugMode: 0
-  colliderDebugModeMaterial: {fileID: 2100000, guid: 662255d2def46554db865c30486d3373,
-    type: 2}
   playerName: veronica_cc
   sprite: {fileID: 21300000, guid: 8ef71e28aeff4c044a18fd8be4bf97ca, type: 3}
   attack: 1
-  speed: 1
+  speed: 2

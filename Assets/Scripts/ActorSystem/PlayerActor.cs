@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-namespace old_0609
+namespace Ria
 {
-    using Ria;
     public enum PlayerID
     {
         Player1,
@@ -11,21 +10,15 @@ namespace old_0609
 
     public class PlayerActor : Actor
     {
-        #region Member
         private PlayerID playerID;
         private PlayerScriptableObject scriptable;
         private SpriteRenderer sr_ = null;
         private RiaCollider mRiaCollider;
-        #endregion
 
-        #region Main Function
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
-        /// <param name="_playerID">player1 or player2</param>
-        /// <param name="_scriptable">PlayerScriptableObject</param>
-        /// <param name="_name">GameObjectの名前</param>
-        /// <param name="_localPosition">localPosition</param>
+        // _playerID      player1 or player2
+        // _scriptable    PlayerScriptableObject
+        // _name          GameObjectの名前
+        // _localPosition localPosition
         public PlayerActor(PlayerID _playerID, PlayerScriptableObject _scriptable, string _name, Vector3 _localPosition)
                : base(_name, _localPosition)
         {
@@ -37,21 +30,18 @@ namespace old_0609
             this.mRiaCollider = new RiaCollider(this.go_, this.trans_, this.scriptable);
         }
 
-        /// <summary>
-        /// PlayerManager.Update()で呼び出される
-        /// </summary>
-        public override void OnUpdate()
+        protected override void OnCreate()
+        {
+            
+        }
+
+        protected override void OnRun()
         {
             //this.mRiaCollider.Run();
             Move();
             Shot();
         }
-        #endregion
-
-        #region Private Function
-        /// <summary>
-        /// 移動処理
-        /// </summary>
+        
         private void Move()
         {
             switch (playerID)
@@ -119,6 +109,5 @@ namespace old_0609
                     break;
             }
         }
-        #endregion
     }
 }

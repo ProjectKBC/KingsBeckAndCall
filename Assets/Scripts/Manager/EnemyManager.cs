@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 
-namespace old_0609
+namespace Ria
 {
-    public class EnemyManager : MonoBehaviour
+    [System.Serializable]
+    public class EnemyManager : ChildManager
     {
         public enum ENEMY
         {
@@ -13,30 +14,26 @@ namespace old_0609
             MAX,
         }
 
+        [SerializeField, Tooltip("")]
+        private Vector3 startPosition;
+        [SerializeField, Tooltip("タイプ")]
+        private ENEMY enemyType = ENEMY.UFA_FIRST;
+
         [SerializeField, Tooltip("ScriptableObject")]
         private EnemyScriptableObject[] scriptables = new EnemyScriptableObject[(int)ENEMY.MAX];
         [SerializeField, Tooltip("生成数")]
         private int[] caps = new int[(int)ENEMY.MAX];
-        [SerializeField, Tooltip("タイプ")]
-        private ENEMY enemy_type = ENEMY.UFA_FIRST;
-
-        private Transform trans_;
+    
         private ActorPool<EnemyCachedActor> pool = new ActorPool<EnemyCachedActor>();
         private float calcTime = 0;
 
-        public void Start()
+        protected override void OnInit()
         {
-            trans_ = this.transform;
             this.pool.Initialize(0, this.scriptables, this.caps);
             this.pool.Generate();
         }
 
-        public void OnDestroy()
-        {
-            this.pool.Final();
-        }
-
-        public void Update()
+        protected override void OnRun()
         {
             // スペースキーで一括回収
             if (Input.GetKeyDown(KeyCode.Space))
@@ -55,12 +52,17 @@ namespace old_0609
             if (this.calcTime >= span)
             {
                 EnemyCachedActor enemy = new EnemyCachedActor();
-                this.pool.AwakeObject((int)this.enemy_type, trans_.position, out enemy);
+                this.pool.AwakeObject((int)this.enemyType, startPosition, out enemy);
                 this.calcTime -= span;
             }
 
             // アクティブなオブジェクトの更新
             this.pool.Proc(elapsedTime);
+        }
+
+        public void OnDestroy()
+        {
+            this.pool.Final();
         }
     }
 }
