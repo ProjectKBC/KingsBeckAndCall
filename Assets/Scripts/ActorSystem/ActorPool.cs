@@ -1,88 +1,50 @@
 ﻿using UnityEngine;
+using UnityManiax;
+using UnityManiax.TaskList;
 
-namespace old_0609
+namespace Ria
 {
     using UnityManiax;
     using UnityManiax.TaskList;
 
     public class ActorPool<T> where T : CachedActor, new()
     {
-        #region Member
-        /// <summary>
-        /// 各オブジェクトの共有設定
-        /// </summary>
         private struct ObjectParam
         {
             public CachedActor actor;
-            /// <summary>
-            /// 元のprefab
-            /// </summary>
             public ScriptableObject scriptable;
-            /// <summary>
-            /// 生成した親ノード
-            /// </summary>
+
+            // 生成した親ノード
             public Transform root;
-            /// <summary>
-            /// 空きオブジェクトバッファ
-            /// </summary>
+            // 空きオブジェクトバッファ
             public T[] pool;
-            /// <summary>
-            /// 空きオブジェクトインデックス
-            /// </summary>
+            // 空きオブジェクトインデックス
             public int freeIndex;
-            /// <summary>
-            /// 生成限界数
-            /// </summary>
+            // 生成限界数
             public int genMax;
-            /// <summary>
-            /// 生成した数
-            /// </summary>
+            // 生成した数
             public int genCount;
         }
-
-        /// <summary>
-        /// オブジェクトのカテゴリ
-        /// </summary>
+        // オブジェクトのカテゴリ
         private int category = 0;
-        /// <summary>
-        /// オブジェクト種類数
-        /// </summary>
+        // オブジェクト種類数
         private int typeCount = 0;
-        /// <summary>
-        /// オブジェクト情報
-        /// </summary>
+        // オブジェクト情報
         private ObjectParam[] objParams = null;
-        /// <summary>
-        /// 全オブジェクトリスト
-        /// </summary>
+        // 全オブジェクトリスト
         private T[][] objList = null;
-        /// <summary>
-        /// 稼動オブジェクトタスク
-        /// </summary>
+        // 稼動オブジェクトタスク
         private TaskSystem<T> activeObjTask = null;
-        /// <summary>
-        /// 実行オブジェクト数
-        /// </summary>
+        // 実行オブジェクト数
         private int orderCount = 0;
-        /// <summary>
-        /// procHandler 経過時間
-        /// </summary>
+        // procHandler 経過時間
         private float advanceTime = 0f;
-        /// <summary>
-        /// 稼働オブジェクトタスク数
-        /// </summary>
-        /// 
+        // 稼働オブジェクトタスク数
         public int ActCount { get { return this.activeObjTask.count; } }
-        #endregion
 
-        #region Cached Member 
         private OrderHandler<T> procHandler = null;
         private OrderHandler<T> clearHandler = null;
-        #endregion
 
-        /// <summary>
-        /// コンストラクタ
-        /// </summary>
         public ActorPool()
         {
             // デリゲートキャッシュ
@@ -105,13 +67,10 @@ namespace old_0609
                 return false;
             });
         }
-        
-        /// <summary>
-        /// 初期化
-        /// /// </summary>
-        /// <param name="category">オブジェクトのカテゴリ指定</param>
-        /// <param name="prefabs">複製するPrefab リスト</param>
-        /// <param name="caps">複製限界数リスト</param>
+
+        // category オブジェクトのカテゴリ指定
+        // prefabs  複製するPrefab リスト
+        // caps     複製限界数リスト
         public void Initialize(int category, ScriptableObject[] scriptables, int[] caps)
         {
             // 初期化エラーチェック
@@ -152,10 +111,7 @@ namespace old_0609
             }
             this.activeObjTask = new TaskSystem<T>(capacity);
         }
-
-        /// <summary>
-        /// 終了
-        /// </summary>
+        
         public void Final()
         {
             for (int type = 0; type < this.typeCount; ++type)
@@ -177,11 +133,7 @@ namespace old_0609
             this.objParams = null;
             this.activeObjTask = null;
         }
-
-        /// <summary>
-        /// 全オブジェクトの生成
-        /// 生成数が増えると時間がかかりがちなのでInitializeと分ける
-        /// </summary>
+        
         public void Generate()
         {
             for (int type = 0; type < this.typeCount; ++type)
@@ -198,12 +150,8 @@ namespace old_0609
                 }
             }
         }
-        
-        /// <summary>
-        /// オブジェクトの生成
-        /// </summary>
-        /// <param name="type">オブジェクトの種類</param>
-        /// <returns></returns>
+
+        // type オブジェクトの種類</param>
         private T GenerateObject(int type)
         {
             int index = this.objParams[type].genCount;
@@ -211,34 +159,29 @@ namespace old_0609
             Transform root = this.objParams[type].root;
             GameObject go = new GameObject();
             go.transform.parent = root;
-            
+
 #if UNITY_EDITOR
             go.name = string.Format(this.objParams[type].scriptable.name + "{0:D2}",
             this.objParams[type].genCount);
 #endif
             T obj = new T();
-            
+
             // ユニークID を割り振り
             obj.Create(go, scriptable, UNIQUEID.Create(UNIQUEID.CATEGORYBIT(this.category) | UNIQUEID.TYPEBIT(type) | UNIQUEID.INDEXBIT(index)));
-            
+
             this.objList[type][index] = obj;
             ++this.objParams[type].genCount;
             return obj;
         }
-        
-        /// <summary>
-        /// フレームの頭で呼ばれる処理
-        /// </summary>
+
+        // フレームの頭で呼ばれる処理
         public void FrameTop()
         {
             // 更新オブジェクト数の更新
             this.orderCount = this.activeObjTask.count;
         }
-        
-        /// <summary>
-        /// 定期更新
-        /// </summary>
-        /// <param name="elapsedTime">経過時間</param>
+
+        // name elapsedTime
         public void Proc(float elapsedTime)
         {
             this.advanceTime = elapsedTime;
@@ -248,33 +191,22 @@ namespace old_0609
                 this.orderCount = this.activeObjTask.count;
             }
         }
-        
-        /// <summary>
-        /// 種類別有効数取得
-        /// </summary>
-        /// <param name="type">種類</param>
-        /// <returns></returns>
+
+        // type 種類
         public int GetActiveCount(int type)
         {
             return this.objParams[type].genCount -
             (this.objParams[type].freeIndex + 1);
         }
-
-        /// <summary>
-        /// 全消去
-        /// </summary>
+        
         public void Clear()
         {
             this.activeObjTask.Order(this.clearHandler);
         }
- 
-        /// <summary>
-        /// オブジェクト呼び出し
-        /// </summary>
-        /// <param name="type">種類</param>
-        /// <param name="localPosition">生成座標</param>
-        /// <param name="obj">生成したオブジェクト</param>
-        /// <returns>呼び出しに成功</returns>
+
+        // type          種類
+        // localPosition 生成座標
+        // obj           生成したオブジェクト
         public bool AwakeObject(int type, Vector3 localPosition, out T obj)
         {
             if (this.PickOutObject(type, out obj))
@@ -285,13 +217,9 @@ namespace old_0609
             }
             return false;
         }
-
-        /// <summary>
-        /// オブジェクト取得
-        /// </summary>
-        /// <param name="unique">ユニークID</param>
-        /// <param name="obj">対象オブジェクト</param>
-        /// <returns>ID が一致したか（異なる場合は既に一度回収されている）</returns>
+        
+        // unique ユニークID
+        // obj    対象オブジェクト
         public bool GetObject(UNIQUEID unique, out T obj)
         {
             // 関係のないユニークID
@@ -307,12 +235,8 @@ namespace old_0609
             return (obj.uniqueId == unique);
         }
 
-        /// <summary>
-        /// オブジェクト取り出し
-        /// /// </summary>
-        /// <param name="type">種類</param>
-        /// <param name="obj">取り出したオブジェクト</param>
-        /// <returns></returns>
+        // type 種類
+        // obj  取り出したオブジェクト
         private bool PickOutObject(int type, out T obj)
         {
             obj = null;
@@ -331,10 +255,6 @@ namespace old_0609
             return true;
         }
 
-        /// <summary>
-        /// 稼動終了処理
-        /// </summary>
-        /// <param name="obj">オブジェクト</param>
         private void Sleep(T obj)
         {
             int type = obj.uniqueId.type;

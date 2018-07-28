@@ -292,13 +292,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager:
-    playerScriptObj1: {fileID: 11400000, guid: 6ff625bb6ac33fb4da28dd7855939e1b, type: 2}
-    playerScriptObj2: {fileID: 11400000, guid: 46ce5dcde68d48443aa0b5d49ccca5b7, type: 2}
+    playerScriptObj1: {fileID: 11400000, guid: e9213b70ee106bb41bf95ba7379c2574, type: 2}
+    playerScriptObj2: {fileID: 11400000, guid: c8d5e298fcee3454c9da834580ae19fe, type: 2}
   enemyManager:
     startPosition: {x: -270, y: 540, z: 0}
     enemyType: 0
     scriptables:
-    - {fileID: 11400000, guid: 438d52807653ae74ba0e06be9866abfd, type: 2}
+    - {fileID: 11400000, guid: f897551d8f60aa14e8dd97cbf105bbbe, type: 2}
     caps: e8030000
   soundManager:
     seClips:
