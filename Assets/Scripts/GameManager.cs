@@ -17,7 +17,7 @@ namespace Ria
             enemyManager.Init(this.gameObject);
             soundManager.Init(this.gameObject);
 
-            SoundManager.GI.PlayBGM(BACK_GROUND_MUSIC.TITLE);
+            SoundManager.GI.PlayBGM(BACK_GROUND_MUSIC.GAME_STAGE_DEBUG);
         }
 
         private void Update()
@@ -25,11 +25,6 @@ namespace Ria
             playerManager.Run();
             enemyManager.Run();
             soundManager.Run();
-
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                SoundManager.GI.PlaySE(SOUND_EFFECT.VERONICA_NORMAL_SHOT);
-            }
         }
     }
 }

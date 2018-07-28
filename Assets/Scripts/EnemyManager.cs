@@ -24,7 +24,6 @@ namespace Ria
         private EnemyScriptableObject[] scriptables = new EnemyScriptableObject[(int)ENEMY.MAX];
         [SerializeField, Tooltip("生成数")]
         private int[] caps = new int[(int)ENEMY.MAX];
-        
     
         private old_0609.ActorPool<EnemyCachedActor> pool = new old_0609.ActorPool<EnemyCachedActor>();
         private float calcTime = 0;

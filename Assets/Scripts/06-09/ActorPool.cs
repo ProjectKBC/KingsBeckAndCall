@@ -86,7 +86,8 @@ namespace old_0609
         public ActorPool()
         {
             // デリゲートキャッシュ
-            this.procHandler = new OrderHandler<T>((obj, no) => {
+            this.procHandler = new OrderHandler<T>((obj, no) =>
+            {
                 float elapsedTime = this.advanceTime;
                 // 新規追加されたものは経過時間0sec.
                 if (no >= this.orderCount)
@@ -98,7 +99,8 @@ namespace old_0609
                 }
                 return true;
             });
-            this.clearHandler = new OrderHandler<T>((obj, no) => {
+            this.clearHandler = new OrderHandler<T>((obj, no) =>
+            {
                 this.Sleep(obj);
                 return false;
             });

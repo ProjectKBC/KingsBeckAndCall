@@ -3,8 +3,10 @@ using UnityEditor;
 
 namespace old_0609
 {
+    using Ria;
+
     [CreateAssetMenu(menuName = "ScriptableObject/Enemy")]
-    public sealed class EnemyScriptableObject : ScriptableObject
+    public sealed class EnemyScriptableObject : ActorScriptableObject
     {
         [SerializeField, Tooltip("名前")]
         public string playerName;

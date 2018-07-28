@@ -12,10 +12,11 @@ namespace Ria
 
     public enum BACK_GROUND_MUSIC
     {
-        TITLE = 0,
-        MENU = 1,
-        GAME_MENU = 2,
-        GAME_STAGE01 = 3,
+        GAME_STAGE_DEBUG = 0,
+        TITLE = 1,
+        MENU = 2,
+        GAME_MENU = 3,
+        GAME_STAGE01 = 4,
     }
 
     [System.Serializable]

@@ -2,6 +2,7 @@
 
 namespace old_0609
 {
+    using Ria;
     public enum PlayerID
     {
         Player1,
@@ -14,6 +15,7 @@ namespace old_0609
         private PlayerID playerID;
         private PlayerScriptableObject scriptable;
         private SpriteRenderer sr_ = null;
+        private RiaCollider mRiaCollider;
         #endregion
 
         #region Main Function
@@ -31,6 +33,8 @@ namespace old_0609
             this.scriptable = _scriptable;
             this.sr_ = go_.AddComponent<SpriteRenderer>();
             this.sr_.sprite = scriptable.sprite;
+
+            this.mRiaCollider = new RiaCollider(this.go_, this.trans_, this.scriptable);
         }
 
         /// <summary>
@@ -38,6 +42,7 @@ namespace old_0609
         /// </summary>
         public override void OnUpdate()
         {
+            //this.mRiaCollider.Run();
             Move();
             Shot();
         }
