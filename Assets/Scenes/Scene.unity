@@ -300,6 +300,12 @@ MonoBehaviour:
     scriptables:
     - {fileID: 11400000, guid: 438d52807653ae74ba0e06be9866abfd, type: 2}
     caps: e8030000
+  soundManager:
+    seClips:
+    - {fileID: 8300000, guid: 1352f6f015762584badc7749e06ab762, type: 3}
+    - {fileID: 8300000, guid: cb420ca1518be6c45b714f17e72b3b9e, type: 3}
+    bgmClips:
+    - {fileID: 8300000, guid: dda4a080d9b95594da20ca78127f5354, type: 3}
 --- !u!4 &697138907
 Transform:
   m_ObjectHideFlags: 0

@@ -13,9 +13,11 @@ namespace Ria
 
         private void Start()
         {
-            playerManager.Init();
-            enemyManager.Init();
-            soundManager.Init();
+            playerManager.Init(this.gameObject);
+            enemyManager.Init(this.gameObject);
+            soundManager.Init(this.gameObject);
+
+            SoundManager.GI.PlayBGM(BACK_GROUND_MUSIC.TITLE);
         }
 
         private void Update()
@@ -23,6 +25,11 @@ namespace Ria
             playerManager.Run();
             enemyManager.Run();
             soundManager.Run();
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                SoundManager.GI.PlaySE(SOUND_EFFECT.VERONICA_NORMAL_SHOT);
+            }
         }
     }
 }

@@ -5,16 +5,19 @@ namespace Ria
     public abstract class ChildManager
     {
         protected ScriptableObject scriptable = null;
+        protected GameObject gameObject = null;
 
-        public void Init()
+        public void Init(GameObject _gameObject)
         {
+            gameObject = _gameObject;
             OnInit();
         }
 
-        public void Init(ScriptableObject _scriptable)
+        public void Init(GameObject _gameObject, ScriptableObject _scriptable)
         {
             scriptable = _scriptable;
-        
+            gameObject = _gameObject;
+
             OnInit();
         }
 
