@@ -1,26 +1,29 @@
 ﻿using UnityEngine;
 
-public abstract class ChildManager
+namespace Ria
 {
-    protected ScriptableObject scriptable = null;
-
-    public void Init()
+    public abstract class ChildManager
     {
-        OnInit();
-    }
+        protected ScriptableObject scriptable = null;
 
-    public void Init(ScriptableObject _scriptable)
-    {
-        scriptable = _scriptable;
+        public void Init()
+        {
+            OnInit();
+        }
+
+        public void Init(ScriptableObject _scriptable)
+        {
+            scriptable = _scriptable;
         
-        OnInit();
-    }
+            OnInit();
+        }
 
-    public void Run()
-    {
-        OnRun();
-    }
+        public void Run()
+        {
+            OnRun();
+        }
 
-    protected abstract void OnInit();
-    protected abstract void OnRun();
+        protected abstract void OnInit();
+        protected abstract void OnRun();
+    }
 }
