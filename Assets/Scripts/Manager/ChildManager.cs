@@ -28,5 +28,6 @@ namespace Ria
 
         protected abstract void OnInit();
         protected abstract void OnRun();
+        
     }
 }

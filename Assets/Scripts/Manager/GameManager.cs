@@ -2,13 +2,6 @@
 
 namespace Ria
 {
-    public enum GAME_PHASE
-    {
-        Loading,
-        Run,
-        Pose,
-    }
-
     public class GameManager : MonoBehaviour
     {
         [SerializeField]
