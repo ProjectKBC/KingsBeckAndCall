@@ -2,6 +2,13 @@
 
 namespace Ria
 {
+    public enum GAME_PHASE
+    {
+        Loading,
+        Run,
+        Pose,
+    }
+
     public class GameManager : MonoBehaviour
     {
         [SerializeField]
@@ -22,6 +29,7 @@ namespace Ria
 
         private void Update()
         {
+
             playerManager.Run();
             enemyManager.Run();
             soundManager.Run();
