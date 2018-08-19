@@ -1091,7 +1091,9 @@ MonoBehaviour:
     enemyType: 0
     scriptables:
     - {fileID: 11400000, guid: f897551d8f60aa14e8dd97cbf105bbbe, type: 2}
-    caps: e8030000
+    - {fileID: 11400000, guid: f897551d8f60aa14e8dd97cbf105bbbe, type: 2}
+    - {fileID: 11400000, guid: f897551d8f60aa14e8dd97cbf105bbbe, type: 2}
+    caps: 64000000
   soundManager:
     seClips:
     - {fileID: 8300000, guid: 1352f6f015762584badc7749e06ab762, type: 3}

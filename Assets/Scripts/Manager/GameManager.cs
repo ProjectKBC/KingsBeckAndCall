@@ -22,7 +22,6 @@ namespace Ria
 
         private void Update()
         {
-
             playerManager.Run();
             enemyManager.Run();
             soundManager.Run();

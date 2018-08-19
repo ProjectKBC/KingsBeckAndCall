@@ -12,7 +12,7 @@ namespace Ria
         public Sprite sprite;
         [SerializeField, Range(1, 10), Tooltip("攻撃力")]
         public int attack = 1;
-        [SerializeField, Range(1, 50), Tooltip("速度")]
+        [SerializeField, Range(1, 10), Tooltip("速度")]
         public int speed = 1;
 
     }

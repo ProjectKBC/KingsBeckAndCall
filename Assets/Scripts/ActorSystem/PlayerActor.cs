@@ -13,8 +13,7 @@ namespace Ria
         private PlayerID playerID;
         private PlayerScriptableObject scriptable;
         private SpriteRenderer sr_ = null;
-        private RiaCollider mRiaCollider;
-
+        
         // _playerID      player1 or player2
         // _scriptable    PlayerScriptableObject
         // _name          GameObjectの名前
@@ -26,8 +25,6 @@ namespace Ria
             this.scriptable = _scriptable;
             this.sr_ = go_.AddComponent<SpriteRenderer>();
             this.sr_.sprite = scriptable.sprite;
-
-            this.mRiaCollider = new RiaCollider(this.go_, this.trans_, this.scriptable);
         }
 
         protected override void OnCreate()

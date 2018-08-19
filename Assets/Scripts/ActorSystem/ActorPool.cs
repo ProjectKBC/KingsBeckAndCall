@@ -167,7 +167,9 @@ namespace Ria
             T obj = new T();
 
             // ユニークID を割り振り
-            obj.Create(go, scriptable, UNIQUEID.Create(UNIQUEID.CATEGORYBIT(this.category) | UNIQUEID.TYPEBIT(type) | UNIQUEID.INDEXBIT(index)));
+            obj.Create(go, 
+                UNIQUEID.Create(UNIQUEID.CATEGORYBIT(category) | UNIQUEID.TYPEBIT(type) | UNIQUEID.INDEXBIT(index)),
+                scriptable);
 
             this.objList[type][index] = obj;
             ++this.objParams[type].genCount;

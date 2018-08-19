@@ -19,6 +19,8 @@ namespace Ria
         [SerializeField, Tooltip("タイプ")]
         private ENEMY enemyType = ENEMY.UFA_FIRST;
 
+
+
         [SerializeField, Tooltip("ScriptableObject")]
         private EnemyScriptableObject[] scriptables = new EnemyScriptableObject[(int)ENEMY.MAX];
         [SerializeField, Tooltip("生成数")]

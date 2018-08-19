@@ -15,7 +15,7 @@ namespace Ria
         private bool reqStop = false;
         public bool Alive { get; private set; }
 
-        public void Create(GameObject _gameObject, ScriptableObject _scriptable, UNIQUEID _uniqueId)
+        public void Create(GameObject _gameObject, UNIQUEID _uniqueId, ScriptableObject _scriptable = null)
         {
             this.go_ = _gameObject;
             this.trans_ = go_.transform;
@@ -24,7 +24,7 @@ namespace Ria
             OnCreate(_gameObject, _scriptable, _uniqueId);
         }
 
-        public GameObject Create(string _name, ScriptableObject _scriptable, UNIQUEID _uniqueId)
+        public GameObject Create(string _name, UNIQUEID _uniqueId, ScriptableObject _scriptable = null)
         {
             this.go_ = new GameObject(_name);
             this.trans_ = go_.transform;

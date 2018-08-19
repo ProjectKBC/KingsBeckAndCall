@@ -8,15 +8,12 @@ namespace Ria
     {
         private EnemyScriptableObject mScriptable;
         private SpriteRenderer sr_ = null;
-        private RiaCollider mRiaCollider;
         
         protected override void OnCreate(GameObject _go, ScriptableObject _scriptable, UNIQUEID _uniqueId)
         {
             this.mScriptable  = _scriptable as EnemyScriptableObject; 
             this.sr_ = go_.AddComponent<SpriteRenderer>();
             this.sr_.sprite = mScriptable.sprite;
-
-            this.mRiaCollider = new RiaCollider(this.go_, this.trans_, this.mScriptable);
         }
 
         protected override void OnCreate(string _name, ScriptableObject _scriptable, UNIQUEID _uniqueId)
